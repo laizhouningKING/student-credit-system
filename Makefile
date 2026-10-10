@@ -8,11 +8,15 @@ CXX      ?= g++
 CXXFLAGS ?= -std=c++17 -Wall -Wextra -O2 -finput-charset=UTF-8 -fexec-charset=UTF-8
 SRC       = src/main.cpp
 
-# Windows(MinGW) 生成 .exe，其他平台不加后缀
+# Windows(MinGW) 生成 .exe，并改用 del 清理；其他平台用 rm
 ifeq ($(OS),Windows_NT)
-    TARGET = scms.exe
+    TARGET   = scms.exe
+    RM       = del /Q
+    RM_FILES = scms.exe scms 2>NUL
 else
-    TARGET = scms
+    TARGET   = scms
+    RM       = rm -f
+    RM_FILES = scms scms.exe
 endif
 
 .PHONY: all run clean
@@ -26,4 +30,4 @@ run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	rm -f scms scms.exe
+	-$(RM) $(RM_FILES)
