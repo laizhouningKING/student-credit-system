@@ -1,0 +1,17 @@
+# 编译产物
+*.exe
+*.o
+*.obj
+*.out
+scms
+
+# 运行时数据（每个人本地自己生成，不入库）
+data.txt
+*.dat
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.user
+*.suo
+.DS_Store
